@@ -1,3 +1,68 @@
+//Diamaond
+
+const forLoop = function(start, end, op){
+	const recursiveLoop = function(start, end){
+		if(start >= end) return;
+		op(start);
+		recursiveLoop(start + 1, end);
+	}
+	recursiveLoop(start, end);
+}
+
+const forEach = function(array, op){
+	const recursiveLoop = function(start, end){
+		if(start >= end) return;
+		op(array[start]);
+		recursiveLoop(start + 1, end);
+	}
+	recursiveLoop(0, array.length);
+}
+const printDiamondRecursive = function(h, c){
+	const heightHalf = h/2.0 - 0.5;
+	function d(index){
+		return Math.floor(Math.abs(heightHalf - index));
+	}
+	forLoop(0,h, function(i){
+		const distance = d(i);
+		const charCount = h - distance*2;
+		const spaceCount = h - charCount;
+		var res = "";
+		forLoop(0, spaceCount/2, function(i) { res += " "; });
+		forLoop(0, charCount, function(i) { res += c; });
+		forLoop(0, spaceCount/2, function(i) { res += " "; });
+		console.log(res);
+	});
+}
+
+const printDiamond= function(h, c){
+	const heightHalf = h/2.0 - 0.5;
+	function d(index){
+		return Math.floor(Math.abs(heightHalf - index));
+	}
+	for(var i = 0; i < h; i++){
+		const distance = d(i);
+		const charCount = h - distance*2;
+		const spaceCount = h - charCount;
+		var res = "";
+		forLoop(0, spaceCount/2, function(i) { res += " "; });
+		forLoop(0, charCount, function(i) { res += c; });
+		forLoop(0, spaceCount/2, function(i) { res += " "; });
+		console.log(res);
+	}
+}
+
+printDiamond(41, "#");
+
+
+
+
+
+
+
+
+
+
+//Tic-tac-Toe
 function isWonOrStalemate(gameState){
   for(var i = 0; i < gameState.length; i++){
     var line = gameState[i];
